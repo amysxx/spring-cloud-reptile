@@ -1,0 +1,5 @@
+# Project exclude paths
+/spring-cloud-reptile-eureka/target/
+/spring-cloud-reptile-search/target/
+/spring-cloud-reptile-task/target/
+/spring-cloud-reptile-web/target/

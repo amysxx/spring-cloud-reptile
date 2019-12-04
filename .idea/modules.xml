@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-reptile-eureka/spring-cloud-reptile-eureka.iml" filepath="$PROJECT_DIR$/spring-cloud-reptile-eureka/spring-cloud-reptile-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-reptile-imgs/spring-cloud-reptile-imgs.iml" filepath="$PROJECT_DIR$/spring-cloud-reptile-imgs/spring-cloud-reptile-imgs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-reptile-search/spring-cloud-reptile-search.iml" filepath="$PROJECT_DIR$/spring-cloud-reptile-search/spring-cloud-reptile-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-reptile-task/spring-cloud-reptile-task.iml" filepath="$PROJECT_DIR$/spring-cloud-reptile-task/spring-cloud-reptile-task.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-reptile-web/spring-cloud-reptile-web.iml" filepath="$PROJECT_DIR$/spring-cloud-reptile-web/spring-cloud-reptile-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-cloud-reptileV1.iml" filepath="$PROJECT_DIR$/spring-cloud-reptileV1.iml" />
+    </modules>
+  </component>
+</project>

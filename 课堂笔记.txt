@@ -1,0 +1,70 @@
+
+项目搭建
+
+spring-cloud-reptile:整个项目的根(父)模块，主要作用管理整站依赖版本
+
+spring-cloud-reptile-eureka：注册中心(集群)
+
+spring-cloud-reptile-imgs：图片服务器
+
+spring-cloud-reptile-search:搜索服务、solr实现对外的搜索功能
+
+spring-cloud-reptile-task：定时任务
+
+spring-cloud-reptile-web：编写一个对外提供搜索功能的页面(thymeleaf)，同时调用其他服务
+
+----------------------------------------------------------------------------------------------------
+
+1、向爬取的首页发送请求：
+
+    https://pacaio.match.qq.com/irs/rcd?cid=146&token=49cbb2154853ef1a74ff4e53723372ce&ext=ent&page=1&num=5
+
+2、解析响应结果，获取详情页
+
+    https://new.qq.com/rain/a/20191202A0A1I5
+
+3、提取爬取的数据
+
+
+----------------------------------------------------------------------------------------------------
+
+1、数据存储
+
+    1、redis
+
+    2、数据库
+
+------------------------------------------------------------------
+
+
+CREATE TABLE `t_article` (
+  `id` varchar(255) NOT NULL COMMENT '新闻的ID',
+  `intro` varchar(255) DEFAULT NULL COMMENT '简介',
+  `keywords` varchar(255) DEFAULT NULL COMMENT '关键词',
+  `title` varchar(255) DEFAULT NULL COMMENT '标题',
+  `content` mediumtext COMMENT '文章内容',
+  `imgs` varchar(255) DEFAULT NULL COMMENT '图片',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
