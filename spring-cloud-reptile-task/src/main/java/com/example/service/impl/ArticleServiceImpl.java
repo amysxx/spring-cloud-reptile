@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.alibaba.fastjson.JSON;
 import com.example.dao.ArticleMapper;
 import com.example.domain.Article;
+import com.example.feign.ProductFeignClient;
 import com.example.service.ArticleService;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -38,6 +39,8 @@ public class ArticleServiceImpl implements ArticleService {
     private StringRedisTemplate redisTemplate;
     @Autowired
     private ArticleMapper articleMapper;
+    @Autowired
+    private ProductFeignClient productFeignClient;
 
     @Override
     public int add(Article article) {
@@ -138,6 +141,8 @@ public class ArticleServiceImpl implements ArticleService {
             parts.add("img", mbar);
 
             restTemplate.postForLocation("http://imgs/upload", parts);
+
+
             //重新设置img标签的src属性值
             element.attr("src", "http://imgs/findByName/"+fileName);
 
