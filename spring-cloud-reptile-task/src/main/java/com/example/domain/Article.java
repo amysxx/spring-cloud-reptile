@@ -13,7 +13,7 @@ import java.util.List;
  * @date 2019/12/3
  */
 @Data
-@Table(name = "article")
+@Table(name = "t_article")
 public class Article implements Serializable {
     /**
      * 新闻的ID

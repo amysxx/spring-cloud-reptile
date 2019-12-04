@@ -11,9 +11,13 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
@@ -44,10 +48,10 @@ public class ArticleServiceImpl implements ArticleService {
     public List<Article> list() {
         int page=1;
         List<Article> list = new ArrayList<>();
-        while (page<=5) {
+        while (true) {
             String url = "https://pacaio.match.qq.com/irs/rcd?cid=146&token=49cbb2154853ef1a74ff4e53723372ce&ext=ent&page="+page+"&num=5";
             //向爬取的首页发送请求
-            Map<String,Object> map = restTemplate.getForObject(url, Map.class);
+            Map<String,Object> map = new RestTemplate().getForObject(url, Map.class);
             if (map == null) {
                 return null;
             }
@@ -91,7 +95,7 @@ public class ArticleServiceImpl implements ArticleService {
         article.setKeywords(map.get("keywords"));
         article.setTitle(map.get("title"));
         //向文章详情页发送请求，获取文章详情页的内容，文字和图片
-        String template = restTemplate.getForObject("https://new.qq.com/rain/a/" + article.getId(), String.class);
+        String template = new RestTemplate().getForObject("https://new.qq.com/rain/a/" + article.getId(), String.class);
         //解析HTML，获取文章内容和图片
         Document document = Jsoup.parse(template);
         //文章内容
@@ -122,26 +126,40 @@ public class ArticleServiceImpl implements ArticleService {
             //获取img标签的src属性值
             String img = "http:"+element.attr("src");
 
-            byte[] bytes = restTemplate.getForObject(img, byte[].class);
+            byte[] bytes = new RestTemplate().getForObject(img, byte[].class);
             //给图片重新命名
             String fileName= UUID.randomUUID() + ".png";
 
-            String path = "D:\\imgs\\" + fileName;
+            //发送的请求类型是POST
+            MultiValueMap<String, Object> parts = new LinkedMultiValueMap<>();
+            //设置提交数据的表单类型是multipart/form-data
 
-            try {
-                FileUtils.writeByteArrayToFile(new File(path),bytes);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            MyByteArrayResource mbar = new MyByteArrayResource(bytes, fileName);
+            parts.add("img", mbar);
 
+            restTemplate.postForLocation("http://imgs/upload", parts);
             //重新设置img标签的src属性值
-
-            element.attr("src", path);
+            element.attr("src", "http://imgs/findByName/"+fileName);
 
             //只保存图片名称
             imgList.add(fileName);
         }
 
         return imgList;
+    }
+
+    //我们以字节数组的方式进行文件上传的话需要重写ByteArrayResource类中获取文件名的方法
+    private class MyByteArrayResource extends ByteArrayResource{
+        private String fileName;
+
+        public MyByteArrayResource(byte[] byteArray,String fileName) {
+            super(byteArray);
+            this.fileName = fileName;
+        }
+
+        @Override
+        public String getFilename() {
+            return fileName;
+        }
     }
 }

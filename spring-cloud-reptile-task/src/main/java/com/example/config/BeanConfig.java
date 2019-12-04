@@ -1,5 +1,6 @@
 package com.example.config;
 
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
@@ -23,7 +24,8 @@ public class BeanConfig {
 
 
     @Bean
-    public RestTemplate restTemplate(){
+    @LoadBalanced
+    public RestTemplate restTemplate() {
         RestTemplate restTemplate = new RestTemplate();
 
         List<HttpMessageConverter<?>> list = restTemplate.getMessageConverters();
@@ -31,7 +33,7 @@ public class BeanConfig {
         for (HttpMessageConverter<?> converter : list) {
 
             if (converter instanceof StringHttpMessageConverter) {
-                ( (StringHttpMessageConverter)converter).setDefaultCharset(StandardCharsets.UTF_8);
+                ((StringHttpMessageConverter) converter).setDefaultCharset(StandardCharsets.UTF_8);
             }
         }
 
@@ -40,14 +42,15 @@ public class BeanConfig {
 
     //创建操作Redis的对象
     @Bean
-    public StringRedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory){
+    public StringRedisTemplate redisTemplate(RedisConnectionFactory redisConnectionFactory) {
 
-        StringRedisTemplate template=new StringRedisTemplate();
+        StringRedisTemplate template = new StringRedisTemplate();
         template.setConnectionFactory(redisConnectionFactory);
         return template;
     }
+
     @Bean
-    public RedisConnectionFactory redisConnectionFactory(){
+    public RedisConnectionFactory redisConnectionFactory() {
 
 
         return new JedisConnectionFactory(new RedisStandaloneConfiguration());

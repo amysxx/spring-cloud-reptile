@@ -28,24 +28,17 @@ spring-cloud-reptile-web：编写一个对外提供搜索功能的页面(thymele
 
 ----------------------------------------------------------------------------------------------------
 
-1、数据存储
+spring-cloud-reptile-imgs
 
-    1、redis
-
-    2、数据库
-
-------------------------------------------------------------------
+    1、实现文件上传，完善昨天的爬取图片部分
 
 
-CREATE TABLE `t_article` (
-  `id` varchar(255) NOT NULL COMMENT '新闻的ID',
-  `intro` varchar(255) DEFAULT NULL COMMENT '简介',
-  `keywords` varchar(255) DEFAULT NULL COMMENT '关键词',
-  `title` varchar(255) DEFAULT NULL COMMENT '标题',
-  `content` mediumtext COMMENT '文章内容',
-  `imgs` varchar(255) DEFAULT NULL COMMENT '图片',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8
+    2、根据图片名称获取对应的图片
+
+
+solr安装
+
+    认识solr的基本使用规则
 
 
 

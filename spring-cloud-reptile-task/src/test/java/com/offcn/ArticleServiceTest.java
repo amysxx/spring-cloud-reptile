@@ -60,28 +60,10 @@ public class ArticleServiceTest {
     @Test
     public void demo3(){
 
-        List<Article> list = articleService.list();
+        articleService.list();
 
-        for (Article article : list) {
-            articleService.add(article);
-        }
-        System.out.println ("添加成功" );
 
     }
 
-    @Test
-    public void demo4(){
-        ValueOperations<String, String> ops = redisTemplate.opsForValue();
 
-        Set<String> keys = redisTemplate.keys("article:*");
-
-        keys.forEach(key->{
-
-            String value = ops.get(key);
-
-            Article article = JSON.parseObject(value, Article.class);
-            articleService.add(article);
-        });
-
-    }
 }

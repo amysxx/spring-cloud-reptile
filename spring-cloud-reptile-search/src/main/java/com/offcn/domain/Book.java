@@ -12,13 +12,12 @@ import java.io.Serializable;
  * @date 2019/11/29
  */
 @Data
-@Table(name = "t_book")
+@Table
 public class Book implements Serializable {
 
     @Id
     private Integer id;
 
-    @Column(name = "book_name")
     private String name;
 
     private Double price;
