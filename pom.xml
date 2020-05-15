@@ -71,7 +71,7 @@
 
 		<!--文件上传组件-->
 		<commons.fileupload.version>1.3.1</commons.fileupload.version>
-		<jackson.version>2.9.6</jackson.version>
+		<jackson.version>2.11.0</jackson.version>
 	</properties>
 
 	<!--该标签会让子模块选择性继承-->
