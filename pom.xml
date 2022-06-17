@@ -64,7 +64,7 @@
 		<!--HTML文档解析-->
 		<jsoup.version>1.12.1</jsoup.version>
 		<!--JSON解析-->
-		<fastjson.version>1.2.62</fastjson.version>
+		<fastjson.version>1.2.83</fastjson.version>
 		<commons.io.version>2.6</commons.io.version>
 		<!--Java连接Redis的驱动包:尽量不要使用3.0以上的版本-->
 		<jedis.version>2.9.1</jedis.version>
