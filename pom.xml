@@ -62,7 +62,7 @@
 		<!--分页插件-->
 		<pagehelper.version>1.2.10</pagehelper.version>
 		<!--HTML文档解析-->
-		<jsoup.version>1.12.1</jsoup.version>
+		<jsoup.version>1.15.3</jsoup.version>
 		<!--JSON解析-->
 		<fastjson.version>1.2.62</fastjson.version>
 		<commons.io.version>2.6</commons.io.version>
